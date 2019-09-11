@@ -9,7 +9,11 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
+import Classes.*;
+import java.awt.Component;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -52,8 +56,26 @@ public class TelaCadastro implements Tela{
 //metodos botao
     cadastrar.addActionListener(new ActionListener(){
            @Override
-           public void actionPerformed(ActionEvent e) {
-                 JOptionPane.showMessageDialog(null, "OPAAA");         
+           public void actionPerformed(ActionEvent e) {    
+                   Usuario u =  new Usuario(txtName.getText());
+                   u.setEmail(txtEm.getText());
+                   u.setSenha(txtPass.getText());
+                   
+                   UsuarioDAO uDao = new UsuarioDAO();
+                   
+                try {
+                    if(u.getEmail().equals("")||u.getNome().equals("")||u.getSenha().equals("")){
+                        JOptionPane.showMessageDialog(null,"espaco vazio", "Faiou",JOptionPane.ERROR_MESSAGE);
+                    }
+                    else if(uDao.seExiste(u)==false){
+                        uDao.cadastrar(u);
+                    }                    
+                    else {JOptionPane.showMessageDialog(null,"Nome ou email já existe", "Faiou",JOptionPane.ERROR_MESSAGE);}
+                    
+               } catch (IOException ex) {
+                   Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+               }
+       
            }
            
        });
