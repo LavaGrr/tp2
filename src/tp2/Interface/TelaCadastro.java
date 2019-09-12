@@ -42,7 +42,7 @@ public class TelaCadastro implements Tela{
 //panel para senha
        JPanel panPass = new JPanel();
        panPass.add(new JLabel("Senha:"));
-       JTextField txtPass = new JTextField(15);
+       JPasswordField txtPass = new JPasswordField(15);
        panPass.add(txtPass);
 //adicionando panels 
        cframe.add(panName);
@@ -65,12 +65,18 @@ public class TelaCadastro implements Tela{
                    
                 try {
                     if(u.getEmail().equals("")||u.getNome().equals("")||u.getSenha().equals("")){
-                        JOptionPane.showMessageDialog(null,"espaco vazio", "Faiou",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null,"Preencha todos os campos.", "Erro!",JOptionPane.ERROR_MESSAGE);
                     }
-                    else if(uDao.seExiste(u)==false){
+                    else {
+                    	if(uDao.seExiste(u)==false){
                         uDao.cadastrar(u);
+                        JOptionPane.showMessageDialog(null,"Usuario Cadastrado.", "Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+                    	}
+                        else {
+                        	JOptionPane.showMessageDialog(null,"Nome ou email ja cadastrado.", "Erro!",JOptionPane.ERROR_MESSAGE);
+                        }
                     }                    
-                    else {JOptionPane.showMessageDialog(null,"Nome ou email já existe", "Faiou",JOptionPane.ERROR_MESSAGE);}
+                   
                     
                } catch (IOException ex) {
                    Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);

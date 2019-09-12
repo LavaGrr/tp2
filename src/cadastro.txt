@@ -1,5 +1,0 @@
-nome;email;123
-nome;email;123
-asda;asd;asd
-nome;asd;asd
-a;;

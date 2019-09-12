@@ -6,6 +6,8 @@
 package Classes;
 
 import Exceptions.UsuarioException;
+
+
 import java.io.*;
 
 /**
@@ -40,15 +42,17 @@ public class UsuarioDAO {
         BufferedReader br = new BufferedReader(fr);
         String linha = br.readLine();
         
-        do{
-            String linhaA[] = linha.split(";");
-            System.out.println(linhaA.length);
-            if(linhaA[0].equals(u.getNome()) || linhaA[1].equals(u.getEmail())){               
-                return true;
-            }
-            linha = br.readLine();
-        }while(linha!=null);
-        br.close();
+        while (linha != null) {
+        	Usuario usuario = this.getUsuario(linha);
+        	if(usuario.getNome().equals(u.getNome())||usuario.getEmail().equals(u.getEmail()) ) {
+        		return true;
+        	}
+        	linha = br.readLine();
+        	
+
+        	}
+        	br.close();
+       
         return false;
     }
     public void cadastrar(Usuario u) throws IOException {
@@ -56,5 +60,14 @@ public class UsuarioDAO {
         ma.escrever("src/cadastro.txt", u.getNome() + ";" + u.getEmail() + ";" + u.getSenha());
        
     }
+    
+    public Usuario getUsuario(String linha) {
+		String vetor[] = new String[3];
+		vetor = linha.split(";");
+		Usuario u = new Usuario(vetor[0]);
+		u.setEmail(vetor[1]);
+		u.setSenha(vetor[2]);
+		return u;
+	}
     
 }
