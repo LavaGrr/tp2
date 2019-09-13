@@ -42,10 +42,15 @@ public class TelaAnuncios implements Tela{
        JButton ordenar = new JButton("Ordenar Anunciozitos");
        panBot.add(ordenar);
        
+       //panel anuncios
+       JPanel anuncios = new JPanel();
+       anuncios.setBorder(BorderFactory.createLineBorder(Color.black));
+       
+       anuncios.setSize(20, 70); 
        //adicionando panels
        aframe.add(panTop, BorderLayout.BEFORE_FIRST_LINE);
        aframe.add(panBot, BorderLayout.AFTER_LAST_LINE);
-       
+       aframe.add(anuncios);
        //métodos
         postAnuncio.addActionListener(new ActionListener(){
             @Override

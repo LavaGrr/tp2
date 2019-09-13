@@ -51,6 +51,8 @@ public class TelaCadastro implements Tela{
 //add botao
        JButton cadastrar = new JButton("Cadastrar!");
        cframe.add(cadastrar);
+       JButton pronto = new JButton("Pronto!");
+       cframe.add(pronto);
        
        
 //metodos botao
@@ -85,6 +87,15 @@ public class TelaCadastro implements Tela{
            }
            
        });
+    
+    pronto.addActionListener(new ActionListener(){
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               JFrame tl = new TelaLogin().montaJanela();              
+               cframe.dispose();
+               
+           }            
+    });
     
        return cframe;
     }
