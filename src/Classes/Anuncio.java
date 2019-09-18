@@ -14,13 +14,30 @@ import java.util.Date;
  */
 public class Anuncio {
     private Usuario usuario;
-    private String descricao, tag;
+    private String titulo,descricao, tag;
+    private double preco;
     private Date data;
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
     public Usuario getUsuario() {
         return usuario;
     }
 
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+    
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }

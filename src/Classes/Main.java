@@ -1,16 +1,16 @@
 package Classes;
 
 
+import View.*;
 import javax.swing.*;
-import tp2.Interface.*;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        JFrame tela = new TelaLogin().montaJanela();
         
-
+        JFrame tA = new TelaAnuncios();
+        tA.setVisible(true);
+        //JFrame tela = new TelaLogin();      
 
     }
 }
