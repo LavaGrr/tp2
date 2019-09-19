@@ -5,8 +5,8 @@
  */
 package View;
 
-import Classes.Anuncio;
-import Classes.Usuario;
+import Model.Anuncio;
+import Model.Usuario;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -67,11 +67,13 @@ public class TelaAnuncios extends JFrame {
             JPanel anuncio = new JPanel(new GridBagLayout());
             anuncio.setBorder(new TitledBorder(a.getTitulo()));
             JTextArea txtDesc = new JTextArea();
+            //txtDesc.setText("aioasjsjdiasjdoiaj");
+            //txtDesc.setRows(((int)txtDesc.getPreferredSize().getWidth())/txtDesc.getText().length);
             
-            txtDesc.setText("asdasd");
+            
             txtDesc.setEditable(false);
             JLabel descricao = new JLabel("Descricao: ");
-
+            
             JLabel preco = new JLabel("Preço:");
             JTextField txtPrec = new JTextField("RS:" + a.getPreco(), 15);
             txtPrec.setEditable(false);
@@ -83,6 +85,7 @@ public class TelaAnuncios extends JFrame {
 
             c.gridx = 2;
             c.gridwidth = 2;
+            
        
             anuncio.add(txtDesc, c);
 

@@ -5,11 +5,12 @@
  */
 package View;
 
+import Model.UsuarioDAO;
+import Model.Usuario;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import Classes.*;
 import java.awt.Component;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -59,10 +60,11 @@ public class TelaCadastro extends JFrame{
 //metodos botao
     cadastrar.addActionListener(new ActionListener(){
            @Override
-           public void actionPerformed(ActionEvent e) {    
+           public void actionPerformed(ActionEvent e) {
                    Usuario u =  new Usuario(txtName.getText());
                    u.setEmail(txtEm.getText());
-                   u.setSenha(txtPass.getText());
+                   
+                   u.setSenha(u.encriptografar(txtPass.getText()));
                    
                    UsuarioDAO uDao = new UsuarioDAO();
                    

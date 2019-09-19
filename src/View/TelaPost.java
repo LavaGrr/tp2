@@ -5,8 +5,8 @@
  */
 package View;
 
-import Classes.Anuncio;
-import Classes.Usuario;
+import Model.Anuncio;
+import Model.Usuario;
 import java.awt.*;
 
 import java.awt.event.*;
@@ -23,7 +23,7 @@ public class TelaPost extends JFrame {
         super();
         this.setTitle("CLIENTE - anunciar");
 
-        this.setSize(300, 170);
+        this.setSize(350, 250);
         this.setLayout(new FlowLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -72,8 +72,19 @@ public class TelaPost extends JFrame {
         c.gridx = 1;
         c.gridwidth = 1;
         anuncio.add(preco, c);
-
-
+        
+        JLabel boxTitle = new JLabel("Escolha uma TAG:");
+        c.gridy=3;
+        anuncio.add(boxTitle, c);
+        
+        JComboBox comboBox = new JComboBox();
+        comboBox.addItem("Comida");
+        comboBox.addItem("Utilidades");
+        c.gridx = 2;
+       
+        anuncio.add(comboBox, c);
+        
+        //anuncio.add(boxTitle);
         //panBot
         JPanel panBot = new JPanel();
         //botoes

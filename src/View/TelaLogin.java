@@ -5,8 +5,8 @@
  */
 package View;
 
-import Classes.*;
-import Classes.UsuarioDAO;
+import Model.Usuario;
+import Model.UsuarioDAO;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class TelaLogin extends JFrame{
        JPanel panPass = new JPanel();
        //panPass.setLayout(new FlowLayout());
        panPass.add(new JLabel("Senha:"));
-       JTextField txtPass = new JTextField(15);
+       JPasswordField txtPass = new JPasswordField(15);
        panPass.add(txtPass);
 //botao login e cadastro
        JButton login = new JButton("Login");
@@ -57,10 +57,11 @@ public class TelaLogin extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Usuario dados = new Usuario(txtName.getText());
-                dados.setSenha(txtPass.getText());
+                dados.setSenha(dados.encriptografar(txtPass.getText()));
                 
                 try {
-                    if(UsuarioDAO.verificaLogin(dados)==true){
+                    UsuarioDAO u = new UsuarioDAO();
+                    if(u.verificaLogin(dados)==true){
                         JFrame telaAnuncios = new TelaAnuncios();
                         telaAnuncios.setVisible(true);
                         JOptionPane.showMessageDialog(null, "Bem Vindo, " + dados.getNome());

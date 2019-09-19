@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Classes;
+package Model;
 
-import Exceptions.UsuarioException;
+import Controller.UsuarioException;
 
 
 import java.io.*;
@@ -16,16 +16,16 @@ import java.io.*;
  */
 public class UsuarioDAO {
 
-    public static boolean verificaLogin(Usuario dados) throws FileNotFoundException, IOException {
+    public boolean verificaLogin(Usuario dados) throws FileNotFoundException, IOException {
         FileReader fr = new FileReader("src/cadastro.txt");
         BufferedReader br = new BufferedReader(fr);
         String linha = br.readLine();
         
         while(linha!=null){
-            String[] linhaA = linha.split(";");
-            //System.out.println(linhaA.length);
-            if(linhaA[0].equals(dados.getNome())&& linhaA[2].equals(dados.getSenha())){
-               
+         
+            Usuario usuario = getUsuario(linha);
+            
+            if((usuario.getNome().equals(dados.getNome())||usuario.getNome().equals(dados.getEmail()))&& usuario.getSenha().equals(dados.getSenha())){               
                 return true;
             }
             linha = br.readLine(); 

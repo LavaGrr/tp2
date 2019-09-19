@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp2.Interface;
+package Controller;
 
-import javax.swing.JFrame;
 
 /**
  *
- * @author luiza
+ * @author Aluno
  */
-public interface Tela {
+public class UsuarioException extends Exception{
     
-    public JFrame montaJanela();
+    public UsuarioException(String msg){
+        super(msg);
+    }
+
+    
 }

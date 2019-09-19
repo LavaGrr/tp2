@@ -3,14 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/aluno/Documentos/tp2.1-master/tp2-master/src/View/TelaPerfil.java</file>
-            <file>file:/home/aluno/Documentos/tp2.1-master/tp2-master/src/Classes/Usuario.java</file>
-            <file>file:/home/aluno/Documentos/tp2.1-master/tp2-master/src/View/TelaAnuncios.java</file>
-            <file>file:/home/aluno/Documentos/tp2.1-master/tp2-master/src/View/TelaCadastro.java</file>
-            <file>file:/home/aluno/Documentos/tp2.1-master/tp2-master/src/Classes/Main.java</file>
-            <file>file:/home/aluno/Documentos/tp2.1-master/tp2-master/src/View/TelaLogin.java</file>
-            <file>file:/home/aluno/Documentos/tp2.1-master/tp2-master/src/View/TelaPost.java</file>
-            <file>file:/home/aluno/Documentos/tp2.1-master/tp2-master/src/Classes/Anuncio.java</file>
+            <file>file:/C:/Users/luiza/Documents/NetBeansProjects/tp2/src/Model/Usuario.java</file>
+            <file>file:/C:/Users/luiza/Documents/NetBeansProjects/tp2/src/View/TelaAnuncios.java</file>
+            <file>file:/C:/Users/luiza/Documents/NetBeansProjects/tp2/src/View/TelaCadastro.java</file>
+            <file>file:/C:/Users/luiza/Documents/NetBeansProjects/tp2/src/Model/Anuncio.java</file>
+            <file>file:/C:/Users/luiza/Documents/NetBeansProjects/tp2/src/View/TelaLogin.java</file>
+            <file>file:/C:/Users/luiza/Documents/NetBeansProjects/tp2/src/View/TelaPerfil.java</file>
+            <file>file:/C:/Users/luiza/Documents/NetBeansProjects/tp2/ap17.java</file>
+            <file>file:/C:/Users/luiza/Documents/NetBeansProjects/tp2/src/Model/Main.java</file>
+            <file>file:/C:/Users/luiza/Documents/NetBeansProjects/tp2/src/View/TelaPost.java</file>
+            <file>file:/C:/Users/luiza/Documents/NetBeansProjects/tp2/src/Model/UsuarioDAO.java</file>
+            <file>file:/C:/Users/luiza/Documents/NetBeansProjects/tp2/src/Model/ManipuladorArquivo.java</file>
         </group>
     </open-files>
 </project-private>
