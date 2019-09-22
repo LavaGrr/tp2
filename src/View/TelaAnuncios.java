@@ -17,7 +17,9 @@ import javax.swing.border.TitledBorder;
  * @author luiza
  */
 public class TelaAnuncios extends JFrame {
-
+	
+	private JFrame principal;
+	
     public TelaAnuncios() {
         super();
 
@@ -54,56 +56,16 @@ public class TelaAnuncios extends JFrame {
         Usuario u = new Usuario("bebe");
         a.setUsuario(u);
         a.setTitulo("Barriga de Aluguel");
-        a.setDescricao("quero uma barriga de aluguel");
+        a.setDescricao("quero uma barriga de aluguel alguem me ajuda por favor plz dms aaaaaaaaaaaasddddddddddddddddddddddddddddddddddddddddddddddd");
         a.setPreco(800);
 
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(5, 5, 0, 0);
         
         GridBagConstraints constraintAnuncios = new GridBagConstraints();
-        constraintAnuncios.insets = new Insets(5, 5, 0, 0);
+        constraintAnuncios.insets = new Insets(2, 2, 0, 0);
+        
         for (int i = 0; i < 56; i++) {
-            JPanel anuncio = new JPanel(new GridBagLayout());
-            anuncio.setBorder(new TitledBorder(a.getTitulo()));
-            JTextArea txtDesc = new JTextArea();
-            //txtDesc.setText("aioasjsjdiasjdoiaj");
-            //txtDesc.setRows(((int)txtDesc.getPreferredSize().getWidth())/txtDesc.getText().length);
-            
-            
-            txtDesc.setEditable(false);
-            JLabel descricao = new JLabel("Descricao: ");
-            
-            JLabel preco = new JLabel("Preço:");
-            JTextField txtPrec = new JTextField("RS:" + a.getPreco(), 15);
-            txtPrec.setEditable(false);
-            c.gridx = 1;
-            c.gridy = 1;
-            c.gridwidth = 1;
-            
-            anuncio.add(descricao, c);
-
-            c.gridx = 2;
-            c.gridwidth = 2;
-            
-       
-            anuncio.add(txtDesc, c);
-
-            c.gridy = 2;
-            anuncio.add(txtPrec, c);
-            c.gridx = 1;
-            c.gridwidth = 1;
-            anuncio.add(preco, c);
-
-            JLabel nome = new JLabel(a.getUsuario().getNome());
-            c.gridx = 3;
-            c.gridy = 3;
-            c.gridwidth = 3;
-            anuncio.add(nome, c);
-
-            constraintAnuncios.gridy = i + 1;
-            
-            principal.add(anuncio, constraintAnuncios);
+        	 constraintAnuncios.gridy = i + 1;
+             principal.add(colocarAnuncio(a), constraintAnuncios);
 
         }
         JScrollPane scroll = new JScrollPane(principal);
@@ -149,5 +111,57 @@ public class TelaAnuncios extends JFrame {
         });
 
     }
+    
+    public JPanel colocarAnuncio(Anuncio a) {
+    	GridBagConstraints c = new GridBagConstraints();
+    	c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(5, 9, 0, 9);
+        
+        GridBagConstraints constraintAnuncios = new GridBagConstraints();
+        constraintAnuncios.insets = new Insets(2, 2, 0, 0);
+        
+    	JPanel anuncio = new JPanel(new GridBagLayout());
+        anuncio.setBorder(new TitledBorder(a.getTitulo()));
+        JEditorPane txtDesc = new JEditorPane();
+        txtDesc.setText(a.getDescricao());
+        //txtDesc.setRows(((int)txtDesc.getPreferredSize().getWidth())/txtDesc.getText().length);
+        
+        
+        txtDesc.setEditable(false);
+        JLabel descricao = new JLabel("Descricao: ");
+        
+        JLabel preco = new JLabel("Preço:");
+        JTextArea txtPrec = new JTextArea();
+        
+        txtPrec.setText("RS:" + a.getPreco());
+        txtPrec.setEditable(false);
+        c.gridx = 1;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        
+        anuncio.add(descricao, c);
 
+        c.gridx = 2;
+        c.gridwidth = 2;
+        
+   
+        anuncio.add(txtDesc, c);
+
+        c.gridy = 2;
+        anuncio.add(txtPrec, c);
+        c.gridx = 1;
+        c.gridwidth = 1;
+        anuncio.add(preco, c);
+
+        JLabel nome = new JLabel(a.getUsuario().getNome());
+        c.gridx = 3;
+        c.gridy = 3;
+        c.gridwidth = 3;
+        anuncio.add(nome, c);
+
+  
+        return anuncio;
+    }
+    
+    
 }
