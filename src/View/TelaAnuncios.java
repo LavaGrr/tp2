@@ -56,7 +56,7 @@ public class TelaAnuncios extends JFrame {
         Usuario u = new Usuario("bebe");
         a.setUsuario(u);
         a.setTitulo("Barriga de Aluguel");
-        a.setDescricao("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        a.setDescricao("a a a a a aa aaaaaaaaaaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaaaaaa");
         a.setPreco(800);
 
 
@@ -126,7 +126,7 @@ public class TelaAnuncios extends JFrame {
      
         String txtDaDescricao = a.getDescricao();
         for(int i = 1;i<=(a.getDescricao().length()-1)/13;i++) {
-        	 txtDaDescricao = quebraDeLinha(txtDaDescricao,(i*13)+(i-1));
+        	// txtDaDescricao = quebraDeLinha(txtDaDescricao,(i*13)+(i-1));
         }
         txtDesc.setText(txtDaDescricao);
         //txtDesc.setRows(((int)txtDesc.getPreferredSize().getWidth())/txtDesc.getText().length);
