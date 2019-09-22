@@ -56,7 +56,7 @@ public class TelaAnuncios extends JFrame {
         Usuario u = new Usuario("bebe");
         a.setUsuario(u);
         a.setTitulo("Barriga de Aluguel");
-        a.setDescricao("quero uma barriga de aluguel");
+        a.setDescricao("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa de aluguel");
         a.setPreco("800");
 
 
