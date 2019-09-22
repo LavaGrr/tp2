@@ -69,6 +69,7 @@ public class TelaCadastro extends JFrame{
                    UsuarioDAO uDao = new UsuarioDAO();
                    
                 try {
+                    //isso pode virar um exception (tem no tela post tbm)
                     if(u.getEmail().equals("")||u.getNome().equals("")||u.getSenha().equals("")){
                         JOptionPane.showMessageDialog(null,"Preencha todos os campos.", "Erro!",JOptionPane.ERROR_MESSAGE);
                     }

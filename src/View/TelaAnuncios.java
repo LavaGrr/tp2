@@ -17,14 +17,14 @@ import javax.swing.border.TitledBorder;
  * @author luiza
  */
 public class TelaAnuncios extends JFrame {
-	
+
 	private JFrame principal;
-	
+
     public TelaAnuncios() {
         super();
 
         this.setTitle("CLIENTE - Lista de Anuncios");
-        //configurações janela       
+        //configurações janela
         this.setSize(300, 400);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,7 +44,7 @@ public class TelaAnuncios extends JFrame {
         //panel principal
         JPanel principal = new JPanel();
         principal.setLayout(new GridBagLayout());
-        
+
         //botoes
         JButton sair = new JButton("Sair");
         panBot.add(sair);
@@ -56,13 +56,13 @@ public class TelaAnuncios extends JFrame {
         Usuario u = new Usuario("bebe");
         a.setUsuario(u);
         a.setTitulo("Barriga de Aluguel");
-        a.setDescricao("quero uma barriga de aluguel alguem me ajuda por favor plz dms aaaaaaaaaaaasddddddddddddddddddddddddddddddddddddddddddddddd");
-        a.setPreco(800);
+        a.setDescricao("quero uma barriga de aluguel");
+        a.setPreco("800");
 
-        
+
         GridBagConstraints constraintAnuncios = new GridBagConstraints();
         constraintAnuncios.insets = new Insets(2, 2, 0, 0);
-        
+
         for (int i = 0; i < 56; i++) {
         	 constraintAnuncios.gridy = i + 1;
              principal.add(colocarAnuncio(a), constraintAnuncios);
@@ -71,7 +71,7 @@ public class TelaAnuncios extends JFrame {
         JScrollPane scroll = new JScrollPane(principal);
         this.add(scroll);
         //adicionando panels
-        
+
         this.add(panTop, BorderLayout.BEFORE_FIRST_LINE);
         this.add(panBot, BorderLayout.AFTER_LAST_LINE);
         //métodos
@@ -111,40 +111,40 @@ public class TelaAnuncios extends JFrame {
         });
 
     }
-    
+
     public JPanel colocarAnuncio(Anuncio a) {
     	GridBagConstraints c = new GridBagConstraints();
     	c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(5, 9, 0, 9);
-        
+
         GridBagConstraints constraintAnuncios = new GridBagConstraints();
         constraintAnuncios.insets = new Insets(2, 2, 0, 0);
-        
+
     	JPanel anuncio = new JPanel(new GridBagLayout());
         anuncio.setBorder(new TitledBorder(a.getTitulo()));
         JEditorPane txtDesc = new JEditorPane();
         txtDesc.setText(a.getDescricao());
         //txtDesc.setRows(((int)txtDesc.getPreferredSize().getWidth())/txtDesc.getText().length);
-        
-        
+
+
         txtDesc.setEditable(false);
         JLabel descricao = new JLabel("Descricao: ");
-        
+
         JLabel preco = new JLabel("Preço:");
         JTextArea txtPrec = new JTextArea();
-        
+
         txtPrec.setText("RS:" + a.getPreco());
         txtPrec.setEditable(false);
         c.gridx = 1;
         c.gridy = 1;
         c.gridwidth = 1;
-        
+
         anuncio.add(descricao, c);
 
         c.gridx = 2;
         c.gridwidth = 2;
-        
-   
+
+
         anuncio.add(txtDesc, c);
 
         c.gridy = 2;
@@ -159,9 +159,9 @@ public class TelaAnuncios extends JFrame {
         c.gridwidth = 3;
         anuncio.add(nome, c);
 
-  
+
         return anuncio;
     }
-    
-    
+
+
 }
