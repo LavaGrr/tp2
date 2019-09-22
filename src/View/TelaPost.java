@@ -104,11 +104,15 @@ public class TelaPost extends JFrame {
         });
         anunciar.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e){
                 Anuncio a = new Anuncio();
                 a.setTitulo(txtTitulo.getText());
                 a.setDescricao(txtDesc.getText());
+                try{
                 a.setPreco(Double.parseDouble(txtPrec.getText()));
+                }catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(null,"Campo de preço vazio.", "Erro!",JOptionPane.ERROR_MESSAGE);
+                }
                 //a.setUsuario(usuario);
                 //a.setData(data);
                 a.setTag(comboBox.getActionCommand());
