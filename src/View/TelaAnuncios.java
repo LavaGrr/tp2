@@ -56,8 +56,8 @@ public class TelaAnuncios extends JFrame {
         Usuario u = new Usuario("bebe");
         a.setUsuario(u);
         a.setTitulo("Barriga de Aluguel");
-        a.setDescricao("quero uma barriga de aluguel");
-        a.setPreco("800");
+        a.setDescricao("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        a.setPreco(800);
 
 
         GridBagConstraints constraintAnuncios = new GridBagConstraints();
@@ -123,7 +123,12 @@ public class TelaAnuncios extends JFrame {
     	JPanel anuncio = new JPanel(new GridBagLayout());
         anuncio.setBorder(new TitledBorder(a.getTitulo()));
         JEditorPane txtDesc = new JEditorPane();
-        txtDesc.setText(a.getDescricao());
+     
+        String txtDaDescricao = a.getDescricao();
+        for(int i = 1;i<=(a.getDescricao().length()-1)/13;i++) {
+        	 txtDaDescricao = quebraDeLinha(txtDaDescricao,(i*13)+(i-1));
+        }
+        txtDesc.setText(txtDaDescricao);
         //txtDesc.setRows(((int)txtDesc.getPreferredSize().getWidth())/txtDesc.getText().length);
 
 
@@ -163,5 +168,16 @@ public class TelaAnuncios extends JFrame {
         return anuncio;
     }
 
-
+    public String quebraDeLinha(String texto,int index) {
+    	char[] txt = texto.toCharArray();
+    	char[] resultado = new char[txt.length + 2];
+    	
+		System.arraycopy(txt, 0, resultado, 0, index);
+		resultado[index] = '-';
+		System.arraycopy(txt, index, resultado, index + 1, txt.length - index);
+		
+		
+    	
+		return new String(resultado);
+    }
 }

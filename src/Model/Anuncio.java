@@ -14,7 +14,7 @@ import java.util.Date;
 public class Anuncio {
     private Usuario usuario;
     private String titulo,descricao, tag;
-    private String preco;
+    private double preco;
     private Date data;
 
     public String getTitulo() {
@@ -29,11 +29,11 @@ public class Anuncio {
         return usuario;
     }
 
-    public String getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(String preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
     

@@ -108,7 +108,7 @@ public class TelaPost extends JFrame {
                 Anuncio a = new Anuncio();
                 a.setTitulo(txtTitulo.getText());
                 a.setDescricao(txtDesc.getText());
-                a.setPreco(txtPrec.getText());
+                a.setPreco(Double.parseDouble(txtPrec.getText()));
                 //a.setUsuario(usuario);
                 //a.setData(data);
                 a.setTag(comboBox.getActionCommand());
