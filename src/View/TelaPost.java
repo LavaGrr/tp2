@@ -78,8 +78,9 @@ public class TelaPost extends JFrame {
         anuncio.add(boxTitle, c);
         
         JComboBox comboBox = new JComboBox();
-        comboBox.addItem("Comida");
+        comboBox.addItem("Alimentacao");
         comboBox.addItem("Utilidades");
+        comboBox.addItem("Servicos");
         c.gridx = 2;
        
         anuncio.add(comboBox, c);
@@ -88,8 +89,10 @@ public class TelaPost extends JFrame {
         //panBot
         JPanel panBot = new JPanel();
         //botoes
+        JButton anunciar = new JButton("Anunciar!");
         JButton sair = new JButton("Sair");
         panBot.add(sair);
+        panBot.add(anunciar);
         sair.addActionListener(new ActionListener() {
             //sai do frame
             @Override
@@ -98,6 +101,30 @@ public class TelaPost extends JFrame {
                 aframe.setVisible(true);
                 dispose();
             }
+        });
+        anunciar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Anuncio a = new Anuncio();
+                a.setTitulo(txtTitulo.getText());
+                a.setDescricao(txtDesc.getText());
+                a.setPreco(txtPrec.getText());
+                //a.setUsuario(usuario);
+                //a.setData(data);
+                a.setTag(comboBox.getActionCommand());
+                
+                if(a.getTitulo().equals("")||a.getDescricao().equals("")){
+                        JOptionPane.showMessageDialog(null,"Preencha todos os campos.", "Erro!",JOptionPane.ERROR_MESSAGE);
+                }
+                else{                    
+                   // aDao.cadastrar(a);
+                    //JOptionPane.showMessageDialog(null,"Usuario Cadastrado.", "Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+                
+                
+            }
+            
         });
         this.add(anuncio);
         this.add(panBot, BorderLayout.AFTER_LAST_LINE);

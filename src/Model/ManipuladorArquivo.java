@@ -12,12 +12,15 @@ import java.io.*;
  *
  * @author Aluno
  */
-public class ManipuladorArquivo {
+public class ManipuladorArquivo<T> {
     public void escrever(String caminho,String linha) throws IOException{
         FileWriter fw = new FileWriter(caminho,true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(linha + "\r\n");
         bw.close();
+    }
+    public void cadastrar(T coisa){
+        
     }
     
 }

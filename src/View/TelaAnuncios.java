@@ -55,7 +55,7 @@ public class TelaAnuncios extends JFrame {
         a.setUsuario(u);
         a.setTitulo("Barriga de Aluguel");
         a.setDescricao("quero uma barriga de aluguel");
-        a.setPreco(800);
+        a.setPreco("800");
 
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
