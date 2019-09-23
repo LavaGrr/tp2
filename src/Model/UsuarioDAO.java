@@ -45,6 +45,7 @@ public class UsuarioDAO {
         while (linha != null) {
         	Usuario usuario = this.getUsuario(linha);
         	if(usuario.getNome().equals(u.getNome())||usuario.getEmail().equals(u.getEmail()) ) {
+        		br.close();
         		return true;
         	}
         	linha = br.readLine();
@@ -70,4 +71,23 @@ public class UsuarioDAO {
 		return u;
 	}
     
+    public Usuario getUsuario(Usuario u) throws IOException {
+    	
+    	 FileReader fr = new FileReader("src/cadastro.txt");
+         BufferedReader br = new BufferedReader(fr);
+         String linha = br.readLine();
+         
+         while (linha != null) {
+         	Usuario usuario = this.getUsuario(linha);
+         	if(usuario.getNome().equals(u.getNome())||usuario.getEmail().equals(u.getEmail()) ) {
+         		br.close();
+         		return usuario;
+         	}
+         	linha = br.readLine();
+         	
+
+         	}
+         	br.close();
+         	return null;
+    }
 }

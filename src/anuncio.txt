@@ -1,0 +1,1 @@
+um bom dia;quero um bom dia;30.0;comboBoxChanged;null;s
