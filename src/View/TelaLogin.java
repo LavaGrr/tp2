@@ -20,7 +20,8 @@ import javax.swing.*;
  */
 public class TelaLogin extends JFrame{
   
-    
+	Usuario usuario;
+	
     public TelaLogin() {
        this.setTitle("CLIENTE - inicio"); 
        
@@ -62,7 +63,7 @@ public class TelaLogin extends JFrame{
                 try {
                     UsuarioDAO u = new UsuarioDAO();
                     if(u.verificaLogin(dados)==true){
-                        JFrame telaAnuncios = new TelaAnuncios();
+                        JFrame telaAnuncios = new TelaAnuncios(u.getUsuario(dados));
                         telaAnuncios.setVisible(true);
                         JOptionPane.showMessageDialog(null, "Bem Vindo, " + dados.getNome());
                     } else{

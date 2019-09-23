@@ -9,13 +9,16 @@ import java.awt.BorderLayout;
 import java.awt.event.*;
 import javax.swing.*;
 
+import Model.Usuario;
+
 /**
  *
  * @author luiza
  */
 public class TelaPerfil extends JFrame{
-    
-    public TelaPerfil() {
+    private Usuario usuario;
+    public TelaPerfil(Usuario usuario) {
+    	this.usuario =usuario;
         this.setTitle("CLIENTE - perfil");
         
         this.setSize(300,400);
@@ -30,7 +33,7 @@ public class TelaPerfil extends JFrame{
             //sai do frame
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame aframe = new TelaAnuncios();
+                JFrame aframe = new TelaAnuncios(usuario);
                 aframe.setVisible(true);
                 dispose();
             }         

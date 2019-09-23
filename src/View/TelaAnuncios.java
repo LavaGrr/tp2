@@ -19,10 +19,10 @@ import javax.swing.border.TitledBorder;
 public class TelaAnuncios extends JFrame {
 
 	private JFrame principal;
-
-    public TelaAnuncios() {
+	private Usuario usuario;
+    public TelaAnuncios(Usuario usuario) {
         super();
-
+        this.usuario = usuario;
         this.setTitle("CLIENTE - Lista de Anuncios");
         //configurações janela
         this.setSize(300, 400);
@@ -59,7 +59,7 @@ public class TelaAnuncios extends JFrame {
         a.setDescricao("a a a a a aa aaaaaaaaaaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaaaaaa");
         a.setPreco(800);
 
-
+        
         GridBagConstraints constraintAnuncios = new GridBagConstraints();
         constraintAnuncios.insets = new Insets(2, 2, 0, 0);
 
@@ -78,7 +78,7 @@ public class TelaAnuncios extends JFrame {
         postAnuncio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame postFrame = new TelaPost();
+                JFrame postFrame = new TelaPost(usuario);
                 postFrame.setVisible(true);
 
             }
@@ -93,7 +93,7 @@ public class TelaAnuncios extends JFrame {
         meuPerfil.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame pframe = new TelaPerfil();
+                JFrame pframe = new TelaPerfil(usuario);
                 pframe.setVisible(true);
 
                 dispose();

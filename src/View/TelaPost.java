@@ -5,11 +5,13 @@
  */
 package View;
 
-import Model.Anuncio;
-import Model.Usuario;
+import Model.*;
+
 import java.awt.*;
 
 import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
@@ -18,9 +20,10 @@ import javax.swing.border.TitledBorder;
  * @author luiza
  */
 public class TelaPost extends JFrame {
-
-    public TelaPost() {
+	private Usuario usuario;
+    public TelaPost(Usuario usuario) {
         super();
+        this.usuario = usuario;
         this.setTitle("CLIENTE - anunciar");
 
         this.setSize(350, 250);
@@ -97,7 +100,7 @@ public class TelaPost extends JFrame {
             //sai do frame
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame aframe = new TelaAnuncios();
+                JFrame aframe = new TelaAnuncios(usuario);
                 aframe.setVisible(true);
                 dispose();
             }
@@ -109,16 +112,21 @@ public class TelaPost extends JFrame {
                 a.setTitulo(txtTitulo.getText());
                 a.setDescricao(txtDesc.getText());
                 a.setPreco(Double.parseDouble(txtPrec.getText()));
-                //a.setUsuario(usuario);
+                a.setUsuario(usuario);
                 //a.setData(data);
                 a.setTag(comboBox.getActionCommand());
-                
+                AnuncioDAO aDao = new AnuncioDAO();
                 if(a.getTitulo().equals("")||a.getDescricao().equals("")){
                         JOptionPane.showMessageDialog(null,"Preencha todos os campos.", "Erro!",JOptionPane.ERROR_MESSAGE);
                 }
-                else{                    
-                   // aDao.cadastrar(a);
-                    //JOptionPane.showMessageDialog(null,"Usuario Cadastrado.", "Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+                else{
+                	try {
+                    aDao.escrever(a);
+                    JOptionPane.showMessageDialog(null,"Anuncio Cadastrado.", "Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+                	} catch (IOException ex){
+                		 JOptionPane.showMessageDialog(null, "Erro", "Erro", JOptionPane.ERROR_MESSAGE);
+                	}
+                    
                 }
                 
                 
