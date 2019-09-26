@@ -6,9 +6,14 @@
 package View;
 
 import Model.Anuncio;
+import DAO.AnuncioDAO;
+import Model.Ordenavel;
 import Model.Usuario;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
@@ -17,17 +22,27 @@ import javax.swing.border.TitledBorder;
  * @author luiza
  */
 public class TelaAnuncios extends JFrame {
-
+        
+        
 	private JFrame principal;
 	private Usuario usuario;
-    public TelaAnuncios(Usuario usuario) {
+        public TelaAnuncios(Usuario usuario) {
         super();
         this.usuario = usuario;
+        
         this.setTitle("CLIENTE - Lista de Anuncios");
         //configurações janela
         this.setSize(300, 400);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ArrayList<Anuncio> anuncios = new ArrayList();
+        try{
+            anuncios = AnuncioDAO.criarLista();
+        }catch(FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
 
         //panel cabecalho
         JPanel panTop = new JPanel();
@@ -54,18 +69,13 @@ public class TelaAnuncios extends JFrame {
         //panel anuncios
         Anuncio a = new Anuncio();
         Usuario u = new Usuario("bebe");
-        a.setUsuario(u);
-        a.setTitulo("Barriga de Aluguel");
-        a.setDescricao("a a a a a aa aaaaaaaaaaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaaaaaa");
-        a.setPreco(800);
-
         
         GridBagConstraints constraintAnuncios = new GridBagConstraints();
         constraintAnuncios.insets = new Insets(2, 2, 0, 0);
 
-        for (int i = 0; i < 56; i++) {
-        	 constraintAnuncios.gridy = i + 1;
-             principal.add(colocarAnuncio(a), constraintAnuncios);
+        for (int i = 0; i < anuncios.size(); i++) {
+            constraintAnuncios.gridy = i + 1;
+            principal.add(colocarAnuncio(anuncios.get(i)), constraintAnuncios);
 
         }
         JScrollPane scroll = new JScrollPane(principal);
@@ -87,7 +97,9 @@ public class TelaAnuncios extends JFrame {
         ordenar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "ordenado.");
+                Ordenavel ordenavel = new Ordenavel();
+                //ordenavel.ordenar(anuncios);
+                
             }
         });
         meuPerfil.addActionListener(new ActionListener() {
@@ -180,4 +192,5 @@ public class TelaAnuncios extends JFrame {
     	
 		return new String(resultado);
     }
+    
 }

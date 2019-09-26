@@ -6,7 +6,7 @@
 package View;
 
 import Model.Usuario;
-import Model.UsuarioDAO;
+import DAO.UsuarioDAO;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;

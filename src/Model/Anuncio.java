@@ -11,11 +11,10 @@ import java.util.Date;
  *
  * @author Aluno
  */
-public class Anuncio {
+public class Anuncio implements Comparavel{
     private Usuario usuario;
-    private String titulo,descricao, tag;
+    private String titulo,descricao, tag, data;
     private double preco;
-    private Date data;
 
     public String getTitulo() {
         return titulo;
@@ -57,12 +56,31 @@ public class Anuncio {
         this.tag = tag;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
+    }
+
+    @Override
+    public boolean maior(Object obj) {
+       Anuncio a = (Anuncio) obj;
+       String[] dataEsse = this.getData().split("/");
+       String[] dataObj = a.getData().split("/");
+       if(Integer.parseInt(dataEsse[2])>Integer.parseInt(dataObj[2])){
+           return true;
+       } else  if(Integer.parseInt(dataEsse[2])==Integer.parseInt(dataObj[2])){
+           if(Integer.parseInt(dataEsse[1])>Integer.parseInt(dataObj[1])){
+               return true;
+           } else if(Integer.parseInt(dataEsse[1])==Integer.parseInt(dataObj[1])){
+               if(Integer.parseInt(dataEsse[0])>Integer.parseInt(dataEsse[0])){
+                   return true;
+               }
+           }
+       }
+       return false;
     }
     
     

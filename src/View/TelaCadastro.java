@@ -5,7 +5,7 @@
  */
 package View;
 
-import Model.UsuarioDAO;
+import DAO.UsuarioDAO;
 import Model.Usuario;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
