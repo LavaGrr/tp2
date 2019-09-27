@@ -1,8 +1,1 @@
-Hug (Abraço);Quero um abraço;2.0;comboBoxChanged;null;s
-Urro;Faz o Urro;30.0;comboBoxChanged;null;s
-Burg;qurro um burgue;20.0;Alimentacao;null;s
-aaa;a;0.0;Alimentacao;null;s
-aaa;a;21.0;Alimentacao;null;s
-Data;arrumar a data do java;3.034093123E9;Utilidades;Tue Sep 24 09:09:06 BRT 2019;s
-Data;consegui;203.0;Utilidades;Tue Sep 24 09:29:37 BRT 2019;s
-Amor;Procurase um amor;20.0;Alimentacao;24/09/2019;s
+Livro de Quimica;Novo;100.0;Alimentacao;27/09/2019;s

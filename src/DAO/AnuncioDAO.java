@@ -38,7 +38,7 @@ public class AnuncioDAO {
             a.setDescricao(vetor[1]);
             a.setPreco(Double.parseDouble(vetor[2]));
             a.setTag(vetor[3]);
-            //a.setData(vetor[4]);
+            a.setData(vetor[4]);
             UsuarioDAO dao = new UsuarioDAO();
             Usuario us = new Usuario(vetor[5]);           
             a.setUsuario(dao.getUsuario(us));

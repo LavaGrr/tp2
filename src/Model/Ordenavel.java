@@ -12,13 +12,21 @@ import java.util.ArrayList;
  * @author aluno
  */
 public class Ordenavel<T extends Comparavel> {
+	
     public ArrayList<T> ordenar(ArrayList<T> ordenados){
-    for(int i=0;i<ordenados.size();i++){
-        if(ordenados.get(i+1).maior(ordenados.get(i))) {
-            T aux = ordenados.get(i);
-            ordenados.set(i, ordenados.get(i+1));
-            ordenados.set(i+1,aux);
-        }
+    for(int i=0;i<ordenados.size()-1;i++){
+    	T aux;
+    	for(int j=i+1;j<ordenados.size();j++) {
+    		if(!ordenados.get(i).maior(ordenados.get(j))) {
+    			
+    			aux = ordenados.get(i);
+    			ordenados.set(i, ordenados.get(j));
+    			ordenados.set(j, aux);
+           
+            
+            
+    		}
+    	}
     }
     return ordenados;
 }

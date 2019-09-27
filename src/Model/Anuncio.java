@@ -68,14 +68,21 @@ public class Anuncio implements Comparavel{
     public boolean maior(Object obj) {
        Anuncio a = (Anuncio) obj;
        String[] dataEsse = this.getData().split("/");
+      
        String[] dataObj = a.getData().split("/");
+      
        if(Integer.parseInt(dataEsse[2])>Integer.parseInt(dataObj[2])){
+    	   
            return true;
        } else  if(Integer.parseInt(dataEsse[2])==Integer.parseInt(dataObj[2])){
+    	  
            if(Integer.parseInt(dataEsse[1])>Integer.parseInt(dataObj[1])){
+        	   
                return true;
            } else if(Integer.parseInt(dataEsse[1])==Integer.parseInt(dataObj[1])){
-               if(Integer.parseInt(dataEsse[0])>Integer.parseInt(dataEsse[0])){
+        	  
+               if(Integer.parseInt(dataEsse[0])>Integer.parseInt(dataObj[0])){
+            	   
                    return true;
                }
            }

@@ -88,6 +88,7 @@ public class TelaAnuncios extends JFrame {
         postAnuncio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	dispose();
                 JFrame postFrame = new TelaPost(usuario);
                 postFrame.setVisible(true);
 
