@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -104,8 +105,8 @@ public class TelaPost extends JFrame {
             //sai do frame
             @Override
             public void actionPerformed(ActionEvent e) {
-            	dispose();
-                JFrame aframe = new TelaAnuncios(usuario);
+            	dispose();                
+                JFrame aframe = new TelaAnuncios(usuario, null);
                 aframe.setVisible(true);
                
             }

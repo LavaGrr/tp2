@@ -23,10 +23,10 @@ import javax.swing.border.TitledBorder;
  */
 public class TelaAnuncios extends JFrame {
         
-        
+        private final ArrayList<Anuncio> anuncios = new ArrayList<>();
 	private JFrame principal;
 	private Usuario usuario;
-        public TelaAnuncios(Usuario usuario) {
+        public TelaAnuncios(Usuario usuario, ArrayList<Anuncio> anuncios) {
         super();
         this.usuario = usuario;
         
@@ -35,13 +35,21 @@ public class TelaAnuncios extends JFrame {
         this.setSize(300, 400);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ArrayList<Anuncio> anuncios = new ArrayList();
-        try{
-            anuncios = AnuncioDAO.criarLista();
-        }catch(FileNotFoundException e){
-            System.out.println(e.getMessage());
-        }catch(IOException ex){
-            System.out.println(ex.getMessage());
+        if(anuncios == null){
+            try{
+                ArrayList<Anuncio> a = AnuncioDAO.criarLista();
+                for(int i=0;i<a.size();i++){
+                    this.anuncios.add(a.get(i));
+                }
+            }catch(FileNotFoundException e){
+                System.out.println(e.getMessage());
+            }catch(IOException ex){
+                System.out.println(ex.getMessage());
+            }
+        } else {
+            for(int i=0;i<anuncios.size();i++){
+                this.anuncios.add(anuncios.get(i));
+            }
         }
 
         //panel cabecalho
@@ -61,21 +69,19 @@ public class TelaAnuncios extends JFrame {
         principal.setLayout(new GridBagLayout());
 
         //botoes
-        JButton sair = new JButton("Sair");
-        panBot.add(sair);
         JButton ordenar = new JButton("Ordenar Anunciozitos");
         panBot.add(ordenar);
+        JButton sair = new JButton("Sair");
+        panBot.add(sair);
 
-        //panel anuncios
-        Anuncio a = new Anuncio();
-        Usuario u = new Usuario("bebe");
+        //panel anuncios       
         
         GridBagConstraints constraintAnuncios = new GridBagConstraints();
         constraintAnuncios.insets = new Insets(2, 2, 0, 0);
 
-        for (int i = 0; i < anuncios.size(); i++) {
+        for (int i = 0; i < this.anuncios.size(); i++) {
             constraintAnuncios.gridy = i + 1;
-            principal.add(colocarAnuncio(anuncios.get(i)), constraintAnuncios);
+            principal.add(colocarAnuncio(this.anuncios.get(i)), constraintAnuncios);
 
         }
         JScrollPane scroll = new JScrollPane(principal);
@@ -98,8 +104,12 @@ public class TelaAnuncios extends JFrame {
         ordenar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dispose();
                 Ordenavel ordenavel = new Ordenavel();
-                //ordenavel.ordenar(anuncios);
+                JFrame telaAnuncios = new TelaAnuncios(usuario, ordenavel.ordenar(getAnuncios()));
+                telaAnuncios.setVisible(true);
+               
+                
                 
             }
         });
@@ -193,5 +203,7 @@ public class TelaAnuncios extends JFrame {
     	
 		return new String(resultado);
     }
-    
+    public ArrayList<Anuncio> getAnuncios(){
+        return this.anuncios;
+    }
 }

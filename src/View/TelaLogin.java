@@ -63,7 +63,7 @@ public class TelaLogin extends JFrame{
                 try {
                     UsuarioDAO u = new UsuarioDAO();
                     if(u.verificaLogin(dados)==true){
-                        JFrame telaAnuncios = new TelaAnuncios(u.getUsuario(dados));
+                        JFrame telaAnuncios = new TelaAnuncios(u.getUsuario(dados), null);
                         telaAnuncios.setVisible(true);
                         JOptionPane.showMessageDialog(null, "Bem Vindo, " + dados.getNome());
                     } else{
