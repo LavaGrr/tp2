@@ -17,15 +17,12 @@ public class Ordenavel<T extends Comparavel> {
     for(int i=0;i<ordenados.size()-1;i++){
     	T aux;
     	for(int j=i+1;j<ordenados.size();j++) {
-    		if(!ordenados.get(i).maior(ordenados.get(j))) {
-    			
-    			aux = ordenados.get(i);
-    			ordenados.set(i, ordenados.get(j));
-    			ordenados.set(j, aux);
-           
+            if(!ordenados.get(i).maior(ordenados.get(j))) {   			
+                aux = ordenados.get(i);
+                ordenados.set(i, ordenados.get(j));
+                ordenados.set(j, aux);           
             
-            
-    		}
+            }
     	}
     }
     return ordenados;

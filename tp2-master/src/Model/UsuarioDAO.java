@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package Model;
 
 import Controller.UsuarioException;
-import Model.Anuncio;
-import Model.ManipuladorArquivo;
-import Model.Usuario;
 
 
 import java.io.*;
-import java.util.ArrayList;
 
 /**
  *
@@ -67,8 +63,8 @@ public class UsuarioDAO {
     }
     
     public Usuario getUsuario(String linha) {
-		String vetor[] = linha.split(";");
-		
+		String vetor[] = new String[3];
+		vetor = linha.split(";");
 		Usuario u = new Usuario(vetor[0]);
 		u.setEmail(vetor[1]);
 		u.setSenha(vetor[2]);
@@ -94,6 +90,4 @@ public class UsuarioDAO {
          	br.close();
          	return null;
     }
-    
-    
 }
