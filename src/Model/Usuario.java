@@ -5,14 +5,16 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  *
  * @author Aluno
  */
-public class Usuario {
-    private String nome, senha, email;
+public class Usuario implements Serializable{
+    private String nome, email;
+    protected String senha;
     public int nivel;
 
     public Usuario(String nome){
@@ -53,18 +55,8 @@ public class Usuario {
         this.nivel = nivel;
     }
 
-    public String encriptografar(String s) {
-        char[] chave = s.toCharArray();
-        for(int i=0; i<(chave.length)/2; i++){
-            char aux = chave[chave.length-1-i];
-            chave[chave.length-1-i] = (char) (chave[i]+6);
-            chave[i] =(char)(aux-6);
-            
-            
-            
-        }
-        
-        return new String(chave);
+    public String encriptografarDesencapsulado(String senha){        
+       return Encriptografia.encriptografar(senha);
     }
     
     

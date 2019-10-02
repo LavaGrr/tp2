@@ -6,9 +6,14 @@
 package View;
 
 import Model.Anuncio;
+import DAO.AnuncioDAO;
+import Model.Ordenavel;
 import Model.Usuario;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
@@ -17,17 +22,35 @@ import javax.swing.border.TitledBorder;
  * @author luiza
  */
 public class TelaAnuncios extends JFrame {
-
+        
+        private final ArrayList<Anuncio> anuncios = new ArrayList<>();
 	private JFrame principal;
 	private Usuario usuario;
-    public TelaAnuncios(Usuario usuario) {
+        public TelaAnuncios(Usuario usuario, ArrayList<Anuncio> anuncios) {
         super();
         this.usuario = usuario;
+        
         this.setTitle("CLIENTE - Lista de Anuncios");
         //configurações janela
         this.setSize(300, 400);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        if(anuncios == null){
+            try{
+                ArrayList<Anuncio> a = AnuncioDAO.criarLista();
+                for(int i=0;i<a.size();i++){
+                    this.anuncios.add(a.get(i));
+                }
+            }catch(FileNotFoundException e){
+                System.out.println(e.getMessage());
+            }catch(IOException ex){
+                System.out.println(ex.getMessage());
+            }
+        } else {
+            for(int i=0;i<anuncios.size();i++){
+                this.anuncios.add(anuncios.get(i));
+            }
+        }
 
         //panel cabecalho
         JPanel panTop = new JPanel();
@@ -46,27 +69,20 @@ public class TelaAnuncios extends JFrame {
         principal.setLayout(new GridBagLayout());
 
         //botoes
-        JButton sair = new JButton("Sair");
-        panBot.add(sair);
         JButton ordenar = new JButton("Ordenar Anunciozitos");
         panBot.add(ordenar);
+        JButton sair = new JButton("Sair");
+        panBot.add(sair);
 
-        //panel anuncios
-        Anuncio a = new Anuncio();
-        Usuario u = new Usuario("bebe");
-        a.setUsuario(u);
-        a.setTitulo("Barriga de Aluguel");
-        a.setDescricao("a a a a a aa aaaaaaaaaaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaaaaaa");
-        a.setPreco(800);
-
+        //panel anuncios       
         
         GridBagConstraints constraintAnuncios = new GridBagConstraints();
         constraintAnuncios.insets = new Insets(2, 2, 0, 0);
 
-        for (int i = 0; i < 56; i++) {
-        	 constraintAnuncios.gridy = i + 1;
-             principal.add(colocarAnuncio(a), constraintAnuncios);
-
+        for (int i = 0; i < this.anuncios.size(); i++) {
+            constraintAnuncios.gridy = i + 1;
+            principal.add(colocarAnuncio(this.anuncios.get(i)), constraintAnuncios);
+            
         }
         JScrollPane scroll = new JScrollPane(principal);
         this.add(scroll);
@@ -78,6 +94,7 @@ public class TelaAnuncios extends JFrame {
         postAnuncio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	dispose();
                 JFrame postFrame = new TelaPost(usuario);
                 postFrame.setVisible(true);
 
@@ -87,7 +104,13 @@ public class TelaAnuncios extends JFrame {
         ordenar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "ordenado.");
+                dispose();
+                Ordenavel ordenavel = new Ordenavel();
+                JFrame telaAnuncios = new TelaAnuncios(usuario, ordenavel.ordenar(getAnuncios()));
+                telaAnuncios.setVisible(true);
+               
+                
+                
             }
         });
         meuPerfil.addActionListener(new ActionListener() {
@@ -109,7 +132,6 @@ public class TelaAnuncios extends JFrame {
                 dispose();
             }
         });
-
     }
 
     public JPanel colocarAnuncio(Anuncio a) {
@@ -125,9 +147,6 @@ public class TelaAnuncios extends JFrame {
         JEditorPane txtDesc = new JEditorPane();
      
         String txtDaDescricao = a.getDescricao();
-        for(int i = 1;i<=(a.getDescricao().length()-1)/13;i++) {
-        	// txtDaDescricao = quebraDeLinha(txtDaDescricao,(i*13)+(i-1));
-        }
         txtDesc.setText(txtDaDescricao);
         //txtDesc.setRows(((int)txtDesc.getPreferredSize().getWidth())/txtDesc.getText().length);
 
@@ -148,8 +167,7 @@ public class TelaAnuncios extends JFrame {
 
         c.gridx = 2;
         c.gridwidth = 2;
-
-
+        
         anuncio.add(txtDesc, c);
 
         c.gridy = 2;
@@ -157,14 +175,36 @@ public class TelaAnuncios extends JFrame {
         c.gridx = 1;
         c.gridwidth = 1;
         anuncio.add(preco, c);
-
-        JLabel nome = new JLabel(a.getUsuario().getNome());
-        c.gridx = 3;
+        
         c.gridy = 3;
-        c.gridwidth = 3;
+        JLabel data = new JLabel("Data:");
+        anuncio.add(data, c);
+        c.gridx = 2;
+        JTextArea txtData = new JTextArea();
+        txtData.setText(a.getData());
+        anuncio.add(txtData, c);
+        
+        JLabel nome = new JLabel(a.getUsuario().getNome());
+        c.gridx = 1;
+        c.gridy = 4;
+        c.gridwidth = 1;
         anuncio.add(nome, c);
-
-
+        
+        JButton responder = new JButton("Responder");
+        c.gridx = 2;
+       
+        anuncio.add(responder, c);
+        
+        responder.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TelaResponder tela = new TelaResponder(usuario,a.getUsuario());
+                tela.setVisible(true);
+                
+                
+            }
+            
+        });
         return anuncio;
     }
 
@@ -179,5 +219,8 @@ public class TelaAnuncios extends JFrame {
 		
     	
 		return new String(resultado);
+    }
+    public ArrayList<Anuncio> getAnuncios(){
+        return this.anuncios;
     }
 }

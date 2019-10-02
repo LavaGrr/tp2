@@ -5,7 +5,7 @@
  */
 package View;
 
-import Model.UsuarioDAO;
+import DAO.UsuarioDAO;
 import Model.Usuario;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -64,7 +64,7 @@ public class TelaCadastro extends JFrame{
                    Usuario u =  new Usuario(txtName.getText());
                    u.setEmail(txtEm.getText());
                    
-                   u.setSenha(u.encriptografar(txtPass.getText()));
+                   u.setSenha(u.encriptografarDesencapsulado(txtPass.getText()));
                    
                    UsuarioDAO uDao = new UsuarioDAO();
                    
@@ -76,6 +76,10 @@ public class TelaCadastro extends JFrame{
                     else {
                     	if(uDao.seExiste(u)==false){
                         uDao.cadastrar(u);
+                        txtEm.setText("");
+                        txtPass.setText("");
+                        txtName.setText("");
+                        
                         JOptionPane.showMessageDialog(null,"Usuario Cadastrado.", "Sucesso!",JOptionPane.INFORMATION_MESSAGE);
                     	}
                         else {

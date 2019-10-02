@@ -5,12 +5,17 @@
  */
 package View;
 
+import DAO.AnuncioDAO;
 import Model.*;
 
 import java.awt.*;
 
 import java.awt.event.*;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -100,9 +105,10 @@ public class TelaPost extends JFrame {
             //sai do frame
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame aframe = new TelaAnuncios(usuario);
+            	dispose();                
+                JFrame aframe = new TelaAnuncios(usuario, null);
                 aframe.setVisible(true);
-                dispose();
+               
             }
         });
         anunciar.addActionListener(new ActionListener(){
@@ -115,14 +121,15 @@ public class TelaPost extends JFrame {
                 a.setPreco(Double.parseDouble(txtPrec.getText()));
 
                 }catch(NumberFormatException ex){
-                    JOptionPane.showMessageDialog(null,"Campo de preço vazio.", "Erro!",JOptionPane.ERROR_MESSAGE);
-                }
-                //a.setUsuario(usuario);
-
+                    JOptionPane.showMessageDialog(null,"Campo de preço inválido.", "Erro!",JOptionPane.ERROR_MESSAGE);
+                }              
                 a.setUsuario(usuario);
-
-                //a.setData(data);
-                a.setTag(comboBox.getActionCommand());
+                Date data = Calendar.getInstance().getTime();                
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String strDate = formatter.format(data);
+                a.setData(strDate);
+                
+                a.setTag(comboBox.getSelectedItem().toString());
                 AnuncioDAO aDao = new AnuncioDAO();
                 if(a.getTitulo().equals("")||a.getDescricao().equals("")){
                         JOptionPane.showMessageDialog(null,"Preencha todos os campos.", "Erro!",JOptionPane.ERROR_MESSAGE);
@@ -131,13 +138,16 @@ public class TelaPost extends JFrame {
                 	try {
                     aDao.escrever(a);
                     JOptionPane.showMessageDialog(null,"Anuncio Cadastrado.", "Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+                    txtTitulo.setText("");
+                    txtPrec.setText("");
+                    txtDesc.setText("");
+                    
                 	} catch (IOException ex){
                 		 JOptionPane.showMessageDialog(null, "Erro", "Erro", JOptionPane.ERROR_MESSAGE);
                 	}
                     
                 }
-                
-                
+        
                 
             }
             
