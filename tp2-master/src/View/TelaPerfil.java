@@ -7,7 +7,6 @@ package View;
 
 import DAO.AnuncioDAO;
 import Model.Anuncio;
-import Model.Ordenavel;
 import java.awt.BorderLayout;
 import java.awt.event.*;
 import javax.swing.*;
@@ -25,15 +24,12 @@ import java.util.ArrayList;
  */
 public class TelaPerfil extends JFrame{
     private Usuario usuario;
-    
     private ArrayList<Anuncio> uAnuncios;
     public TelaPerfil(Usuario usuario) {
     	this.usuario =usuario;
         this.setTitle("CLIENTE - perfil");
         try{
-            uAnuncios = AnuncioDAO.anunciosUsuario(this.usuario);
-            Ordenavel ordenavel = new Ordenavel();
-            ordenavel.ordenar(uAnuncios);
+        uAnuncios = AnuncioDAO.criarLista();
         }catch(IOException e){
             System.out.println("fdc");
         }
@@ -71,8 +67,7 @@ public class TelaPerfil extends JFrame{
         c.gridx = 2;
         panTop.add(rankUsuario, c);
       
-        JPanel anuncios = new JPanel(new GridBagLayout());
-        
+        JPanel anuncios = new JPanel();
         
         GridBagConstraints constraintAnuncios = new GridBagConstraints();
         constraintAnuncios.insets = new Insets(2, 2, 0, 0);
@@ -87,23 +82,14 @@ public class TelaPerfil extends JFrame{
         sair.addActionListener(new ActionListener(){
             //sai do frame
             @Override
-            public void actionPerformed(ActionEvent e) {            
+            public void actionPerformed(ActionEvent e) {
+            
                 JFrame aframe = new TelaAnuncios(usuario, null);
                 aframe.setVisible(true);
                 dispose();
             }         
         });
-        mensagens.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    TelaMensagem tela = new TelaMensagem(usuario);
-                    tela.setVisible(true);
-                }
-            
-        });
-        JScrollPane scroll = new JScrollPane(anuncios);
-        this.add(scroll);
-        
+        this.add(anuncios);
         this.add(panBot, BorderLayout.AFTER_LAST_LINE);
         this.add(panTop, BorderLayout.BEFORE_FIRST_LINE);
     }

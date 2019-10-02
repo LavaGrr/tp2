@@ -58,7 +58,7 @@ public class TelaLogin extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Usuario dados = new Usuario(txtName.getText());
-                dados.setSenha(dados.encriptografarDesencapsulado(txtPass.getText()));
+                dados.setSenha(dados.encriptografar(txtPass.getText()));
                 
                 try {
                     UsuarioDAO u = new UsuarioDAO();

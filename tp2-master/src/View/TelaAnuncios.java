@@ -82,7 +82,7 @@ public class TelaAnuncios extends JFrame {
         for (int i = 0; i < this.anuncios.size(); i++) {
             constraintAnuncios.gridy = i + 1;
             principal.add(colocarAnuncio(this.anuncios.get(i)), constraintAnuncios);
-            
+
         }
         JScrollPane scroll = new JScrollPane(principal);
         this.add(scroll);
@@ -132,6 +132,7 @@ public class TelaAnuncios extends JFrame {
                 dispose();
             }
         });
+
     }
 
     public JPanel colocarAnuncio(Anuncio a) {
@@ -147,6 +148,9 @@ public class TelaAnuncios extends JFrame {
         JEditorPane txtDesc = new JEditorPane();
      
         String txtDaDescricao = a.getDescricao();
+        for(int i = 1;i<=(a.getDescricao().length()-1)/13;i++) {
+        	// txtDaDescricao = quebraDeLinha(txtDaDescricao,(i*13)+(i-1));
+        }
         txtDesc.setText(txtDaDescricao);
         //txtDesc.setRows(((int)txtDesc.getPreferredSize().getWidth())/txtDesc.getText().length);
 
@@ -167,7 +171,8 @@ public class TelaAnuncios extends JFrame {
 
         c.gridx = 2;
         c.gridwidth = 2;
-        
+
+
         anuncio.add(txtDesc, c);
 
         c.gridy = 2;
@@ -175,36 +180,14 @@ public class TelaAnuncios extends JFrame {
         c.gridx = 1;
         c.gridwidth = 1;
         anuncio.add(preco, c);
-        
-        c.gridy = 3;
-        JLabel data = new JLabel("Data:");
-        anuncio.add(data, c);
-        c.gridx = 2;
-        JTextArea txtData = new JTextArea();
-        txtData.setText(a.getData());
-        anuncio.add(txtData, c);
-        
+
         JLabel nome = new JLabel(a.getUsuario().getNome());
-        c.gridx = 1;
-        c.gridy = 4;
-        c.gridwidth = 1;
+        c.gridx = 3;
+        c.gridy = 3;
+        c.gridwidth = 3;
         anuncio.add(nome, c);
-        
-        JButton responder = new JButton("Responder");
-        c.gridx = 2;
-       
-        anuncio.add(responder, c);
-        
-        responder.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TelaResponder tela = new TelaResponder(usuario,a.getUsuario());
-                tela.setVisible(true);
-                
-                
-            }
-            
-        });
+
+
         return anuncio;
     }
 

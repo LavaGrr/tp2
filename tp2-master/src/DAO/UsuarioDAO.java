@@ -6,13 +6,11 @@
 package DAO;
 
 import Controller.UsuarioException;
-import Model.Anuncio;
 import Model.ManipuladorArquivo;
 import Model.Usuario;
 
 
 import java.io.*;
-import java.util.ArrayList;
 
 /**
  *
@@ -94,6 +92,5 @@ public class UsuarioDAO {
          	br.close();
          	return null;
     }
-    
     
 }

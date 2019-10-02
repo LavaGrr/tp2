@@ -45,15 +45,4 @@ public class AnuncioDAO {
             
             return a;
         }
-        public static ArrayList<Anuncio> anunciosUsuario(Usuario u) throws IOException{            
-            ArrayList<Anuncio> anunciosGeral = criarLista();
-            ArrayList<Anuncio> anunciosUsuario = new ArrayList<>();
-            
-            for(int i=0; i<anunciosGeral.size(); i++){
-                if(anunciosGeral.get(i).getUsuario().getNome().equals(u.getNome())){
-                    anunciosUsuario.add(anunciosGeral.get(i));
-                }
-            }
-            return anunciosUsuario;
-        }
 }
