@@ -1,6 +1,0 @@
-1;justo;34.0;Alimentacao;30/09/2019;s
-3;justo;34.0;Alimentacao;28/09/2019;s
-5;justo;34.0;Alimentacao;26/09/2019;s
-4;justo;34.0;Alimentacao;27/09/2019;s
-2;justo;34.0;Alimentacao;29/09/2019;s
-6;justo;34.0;Alimentacao;25/09/2019;s
