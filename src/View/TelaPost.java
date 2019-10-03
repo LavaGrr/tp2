@@ -135,7 +135,7 @@ public class TelaPost extends JFrame {
                         JOptionPane.showMessageDialog(null,"Preencha todos os campos.", "Erro!",JOptionPane.ERROR_MESSAGE);
                 }
                 else{
-                	try {
+                    try {
                     aDao.escrever(a);
                     JOptionPane.showMessageDialog(null,"Anuncio Cadastrado.", "Sucesso!",JOptionPane.INFORMATION_MESSAGE);
                     txtTitulo.setText("");

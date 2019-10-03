@@ -13,6 +13,15 @@ import java.util.Arrays;
  * @author Aluno
  */
 public class Usuario implements Serializable{
+    private String descricao;
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
     private String nome, email;
     protected String senha;
     public int nivel;

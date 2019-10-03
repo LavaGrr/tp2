@@ -67,16 +67,14 @@ public class UsuarioDAO {
     }
     
     public Usuario getUsuario(String linha) {
-		String vetor[] = linha.split(";");
-		
+		String vetor[] = linha.split(";");		
 		Usuario u = new Usuario(vetor[0]);
 		u.setEmail(vetor[1]);
 		u.setSenha(vetor[2]);
 		return u;
 	}
     
-    public Usuario getUsuario(Usuario u) throws IOException {
-    	
+    public Usuario getUsuario(Usuario u) throws IOException {    	
     	 FileReader fr = new FileReader("src/cadastro.txt");
          BufferedReader br = new BufferedReader(fr);
          String linha = br.readLine();

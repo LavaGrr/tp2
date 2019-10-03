@@ -24,10 +24,10 @@ public class TelaConversa extends JFrame{
 		  } else {
 			  u2 = conversa.getUsuarios()[0];
 		  }
-		  this.setTitle("Conversa com "+u2.getNome());
+		this.setTitle("Conversa com "+u2.getNome());
 		JPanel principal = new JPanel(new GridBagLayout());
 		ArrayList<Mensagem> mensagens = conversa.getMensagens();
-		 GridBagConstraints c = new GridBagConstraints();
+		GridBagConstraints c = new GridBagConstraints();
 	    c.insets = new Insets(2, 2, 0, 0);
 	    int i;
 		for(i=0;i<mensagens.size();i++) {
@@ -37,7 +37,7 @@ public class TelaConversa extends JFrame{
 			c.gridwidth = 1;
 			String remetente = msg.getRemetente().getNome();
 			if(remetente.equals(usuario.getNome())){
-				remetente = "Você";
+				remetente = "Voce";
 			}
 			JLabel nome = new JLabel(remetente + ": ");
 			principal.add(nome,c);
@@ -50,18 +50,29 @@ public class TelaConversa extends JFrame{
 			
 		}
 		JPanel painel = new JPanel(new GridBagLayout());
-		 c.insets = new Insets(7, 5, 7, 0);
+		c.insets = new Insets(7, 5, 7, 0);
 		c.gridwidth = 1;
 		c.gridx = 1;
 		JEditorPane txtMsg = new JEditorPane();
 		painel.add(txtMsg,c);
 		JButton enviar = new JButton("Enviar");
-		c.gridx = 3;
+		c.gridx = 3;              
 		c.gridwidth = 1;
 		painel.add(enviar,c);
+                JButton voltar = new JButton("Voltar");
+                c.gridy+=1;
+                c.gridx = 0;
+                painel.add(voltar, c);
 		this.add(painel, BorderLayout.AFTER_LAST_LINE);
 		JScrollPane scroll = new JScrollPane(principal);
-	    this.add(scroll);
+                this.add(scroll);
+            voltar.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+                
+            });
 	    enviar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {

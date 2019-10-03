@@ -14,6 +14,8 @@ import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
@@ -61,7 +63,10 @@ public class TelaAnuncios extends JFrame {
         postAnuncio.setPreferredSize(new Dimension(100, 30));
         JButton meuPerfil = new JButton("Perfil");
         panTop.add(meuPerfil);
-
+        
+        JButton perfis = new JButton("o/");
+        
+        panTop.add(perfis);
         //panel rodape
         JPanel panBot = new JPanel();
         //panel principal
@@ -101,16 +106,28 @@ public class TelaAnuncios extends JFrame {
             }
 
         });
+        perfis.addActionListener(new ActionListener(){
+ 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    TelaPerfisGeral tpg = new TelaPerfisGeral(null);
+                    tpg.setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaAnuncios.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        });
         ordenar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 dispose();
                 Ordenavel ordenavel = new Ordenavel();
                 JFrame telaAnuncios = new TelaAnuncios(usuario, ordenavel.ordenar(getAnuncios()));
                 telaAnuncios.setVisible(true);
-               
-                
-                
+           
             }
         });
         meuPerfil.addActionListener(new ActionListener() {

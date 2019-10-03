@@ -7,6 +7,7 @@ package View;
 
 import DAO.AnuncioDAO;
 import Model.Anuncio;
+import Model.ManipuladorArquivo;
 import Model.Ordenavel;
 import java.awt.BorderLayout;
 import java.awt.event.*;
@@ -17,8 +18,13 @@ import Model.Usuario;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -79,10 +85,8 @@ public class TelaPerfil extends JFrame{
         constraintAnuncios.insets = new Insets(2, 2, 0, 0);
 
         for (int i = 0; i < this.uAnuncios.size(); i++) {
-        	anuncios.add(this.colocarAnuncio(uAnuncios.get(i)),constraintAnuncios);
+            anuncios.add(this.colocarAnuncio(uAnuncios.get(i)),constraintAnuncios);
             constraintAnuncios.gridy = i + 1;
-            
-           
 
         }
         
@@ -173,7 +177,29 @@ public class TelaPerfil extends JFrame{
         deletar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-               
+                //re-lê o arquivo e reescreve sem a linha.
+                //errado pois deleta todos os anuncios do usuario sdkasdkjaksdj
+                FileReader fr;
+                AnuncioDAO aDao = new AnuncioDAO();
+                ManipuladorArquivo ma = new ManipuladorArquivo();
+                try {
+                    fr = new FileReader("src/anuncio.txt");
+                    BufferedReader br = new BufferedReader(fr);
+                    String linha = br.readLine();
+                    while(linha!=null){                          
+                        if(!aDao.getAnuncio(linha).getTitulo().equals(a.getTitulo())&&!aDao.getAnuncio(linha).getDescricao().equals(a.getDescricao())){
+                            ma.escrever("src/anunciosTemp.txt", linha);
+                        }
+                  
+                    linha = br.readLine();
+                
+                    }
+                    
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(TelaPerfil.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaPerfil.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 
             }
